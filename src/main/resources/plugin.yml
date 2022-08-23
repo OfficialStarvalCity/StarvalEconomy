@@ -2,3 +2,7 @@ name: StarvalCity_Economy
 version: '${project.version}'
 main: at.imbussstation.starvalcity_economy.Economy
 api-version: 1.16
+
+commands:
+  eco:
+    description: Main command for the economy

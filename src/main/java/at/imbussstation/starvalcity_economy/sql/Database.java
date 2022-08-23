@@ -129,12 +129,13 @@ public class Database {
         return con;
     }
 
-    public Connection getCon() {return con;}
+    public Statement getStatement() {
+        return statement;
+    }
 
-    public Statement getStatement() {return statement;}
+    public DatabaseMetaData getDatabaseMetaData() {
+        return databaseMetaData;
+    }
 
-    public DatabaseMetaData getDatabaseMetaData() {return databaseMetaData;}
-
-    public AutoReconnector getAutoReconnector() {return autoReconnector;}
 }
 
