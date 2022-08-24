@@ -6,3 +6,5 @@ api-version: 1.16
 commands:
   eco:
     description: Main command for the economy
+  pay:
+    description: Let you pay Money to other People

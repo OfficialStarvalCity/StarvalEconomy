@@ -55,7 +55,7 @@ public class Eco_CMD implements CommandExecutor {
 
             if (args[0].equalsIgnoreCase("add")) {
                 BalanceFunctions.addBalance(target.getUniqueId(), amount);
-                sender.sendMessage(Functions.formatter(Message.BALANCE_ADDED.value(), targetname, args[2]));
+                sender.sendMessage(Functions.formatter(Message.BALANCE_ADDED.value(), args[2], targetname));
             } else if (args[0].equalsIgnoreCase("set")) {
                 BalanceFunctions.setBalance(target.getUniqueId(), amount);
                 sender.sendMessage(Functions.formatter(Message.BALANCE_SET.value(), targetname, args[2]));

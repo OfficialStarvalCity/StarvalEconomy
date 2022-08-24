@@ -1,7 +1,8 @@
 package at.imbussstation.starvalcity_economy.enums;
 
 public enum Permission {
-    ECO_CMD("starvalcity.economy.cmd");
+    ECO_CMD("starvalcity.economy.cmd"),
+    PAY_CMD("starvalcity.economy.pay");
 
     private String message;
 
