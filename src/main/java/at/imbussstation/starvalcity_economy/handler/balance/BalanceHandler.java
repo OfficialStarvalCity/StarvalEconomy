@@ -18,7 +18,7 @@ public class BalanceHandler {
     }
 
     public void loadFromDatabase(UUID uuid) {
-        double money = sqlFunctions.getDouble("eco", "money", "uuid", uuid.toString());
+        double money = sqlFunctions.getDouble("eco", "value", "uuid", uuid.toString());
         javaPlugin.getLogger().severe("Loaded " + money + " from database for " + uuid.toString());
         BALANCE_HOLDER.put(uuid, new Balance(uuid, money));
     }

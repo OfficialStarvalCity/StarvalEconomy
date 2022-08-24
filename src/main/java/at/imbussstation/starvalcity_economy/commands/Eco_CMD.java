@@ -19,17 +19,28 @@ public class Eco_CMD implements CommandExecutor {
 
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
-        if(!sender.hasPermission(Permission.ECO_CMD.value())) {
+        if (!sender.hasPermission(Permission.ECO_CMD.value())) {
             sender.sendMessage(Message.NO_PERMISSION.value());
             return false;
         }
 
-        if(args.length == 0) {
+        if (args.length == 0) {
             sender.sendMessage(Message.USAGE.value());
-        } else if(args.length == 3) {
+        } else if (args.length == 2) {
             String targetname = args[1];
             Player target = Bukkit.getPlayer(targetname);
-            if(target == null) {
+            if (target == null) {
+                sender.sendMessage(Message.NO_PLAYER_FOUND.value());
+                return false;
+            }
+
+            if (args[0].equalsIgnoreCase("get")) {
+                sender.sendMessage(Functions.formatter(Message.BALANCE_GET.value(), targetname, BalanceFunctions.getBalance(target.getUniqueId()) + ""));
+            }
+        } else if (args.length == 3) {
+            String targetname = args[1];
+            Player target = Bukkit.getPlayer(targetname);
+            if (target == null) {
                 sender.sendMessage(Message.NO_PLAYER_FOUND.value());
                 return false;
             }
@@ -37,20 +48,18 @@ public class Eco_CMD implements CommandExecutor {
             double amount = 0;
             try {
                 amount = Double.parseDouble(args[2]);
-            } catch(NumberFormatException e) {
+            } catch (NumberFormatException e) {
                 sender.sendMessage(Message.NO_VALID_INPUT.value());
                 return false;
             }
 
-            if(args[0].equalsIgnoreCase("add")) {
+            if (args[0].equalsIgnoreCase("add")) {
                 BalanceFunctions.addBalance(target.getUniqueId(), amount);
                 sender.sendMessage(Functions.formatter(Message.BALANCE_ADDED.value(), targetname, args[2]));
-            } else if(args[0].equalsIgnoreCase("get")) {
-                sender.sendMessage(Functions.formatter(Message.BALANCE_GET.value(), targetname, BalanceFunctions.getBalance(target.getUniqueId()) + ""));
-            } else if(args[0].equalsIgnoreCase("set")) {
+            } else if (args[0].equalsIgnoreCase("set")) {
                 BalanceFunctions.setBalance(target.getUniqueId(), amount);
                 sender.sendMessage(Functions.formatter(Message.BALANCE_SET.value(), targetname, args[2]));
-            } else if(args[0].equalsIgnoreCase("remove")) {
+            } else if (args[0].equalsIgnoreCase("remove")) {
                 BalanceFunctions.removeBalance(target.getUniqueId(), amount);
                 sender.sendMessage(Functions.formatter(Message.BALANCE_REMOVED.value(), targetname, args[2]));
             } else {
