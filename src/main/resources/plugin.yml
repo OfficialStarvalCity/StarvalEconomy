@@ -3,5 +3,9 @@ version: '${version}'
 main: de.starvalcity.starvaleconomy.Core
 api-version: 1.16
 authors: [ 1337Nirflector ]
-description: Economy API for StarvalCity
+description: Economy Plugin for StarvalCity
 website: https://starvalcity.de/
+
+commands:
+  money:
+    usage: /money
