@@ -44,8 +44,7 @@ public class MoneyCommand implements CommandExecutor {
                 }
                 if (player.hasPermission(commandPermission)) {
 
-                    player.sendMessage("Dein Kontostand: " + BackendHandler.getPlayerBalance(player));
-
+                    player.sendMessage("Dein Kontostand: " + core.getBackendHandler().getPlayerBalance(player));
                 }
             }
 
@@ -56,7 +55,32 @@ public class MoneyCommand implements CommandExecutor {
 
                     if (target != null) {
 
-                        BackendHandler.storeDefaultBalance(target);
+                        core.getBackendHandler().storeDefaultBalance(player);
+                    }
+                }
+            }
+
+            // /money pay <Spielername> <Anzahl>
+            if (args.length == 3) {
+                if (args[0].equalsIgnoreCase("pay")) {
+                    Player target = Bukkit.getPlayer(args[1]);
+
+                    if (target != null) {
+
+                        try {
+                            double amount = Double.parseDouble(args[2]);
+
+                            if (!core.getValueHandler().hasEnoughMoney(player, amount)) {
+                                player.sendMessage("Nicht genug Geld!");
+                            } else {
+
+                                core.getBackendHandler().addBalance(target, amount);
+                                core.getBackendHandler().removeBalance(player, amount);
+                            }
+                        } catch (NumberFormatException numberFormatException) {
+                            numberFormatException.printStackTrace();
+                            player.sendMessage("Kein Double!");
+                        }
                     }
                 }
             }
@@ -70,7 +94,7 @@ public class MoneyCommand implements CommandExecutor {
 
                         try {
                             double amount = Double.parseDouble(args[2]);
-                            BackendHandler.storeBalance(target, amount);
+                            core.getBackendHandler().storeBalance(target, amount);
                         } catch (NumberFormatException numberFormatException) {
                             numberFormatException.printStackTrace();
                             player.sendMessage("Kein Double!");
