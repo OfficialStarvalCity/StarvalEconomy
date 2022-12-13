@@ -71,6 +71,7 @@ public class MoneyCommand implements CommandExecutor {
                             double amount = Double.parseDouble(args[2]);
 
                             if (!core.getValueHandler().hasEnoughMoney(player, amount)) {
+
                                 player.sendMessage("Nicht genug Geld!");
                             } else {
 

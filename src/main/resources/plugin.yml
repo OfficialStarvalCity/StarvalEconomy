@@ -1,6 +1,8 @@
 name: StarvalEconomy
 version: '${version}'
 main: de.starvalcity.starvaleconomy.Core
+softdepend:
+  - LiquidStarval
 api-version: 1.16
 authors: [ 1337Nirflector ]
 description: Economy Plugin for StarvalCity
@@ -9,3 +11,5 @@ website: https://starvalcity.de/
 commands:
   money:
     usage: /money
+  payday:
+    usage: /payday
