@@ -1,9 +1,11 @@
 package de.starvalcity.starvaleconomy;
 
+import de.starvalcity.starvaleconomy.commands.BankCommand;
 import de.starvalcity.starvaleconomy.commands.MoneyCommand;
 import de.starvalcity.starvaleconomy.commands.PayDayCommand;
 import de.starvalcity.starvaleconomy.database.BackendHandler;
 import de.starvalcity.starvaleconomy.database.SQL;
+import de.starvalcity.starvaleconomy.handling.InterfaceHandler;
 import de.starvalcity.starvaleconomy.handling.PayDayHandler;
 import de.starvalcity.starvaleconomy.handling.ValueHandler;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -11,17 +13,21 @@ import org.bukkit.plugin.java.JavaPlugin;
 public class Corebase {
 
     public BackendHandler backendHandler = new BackendHandler();
+    public InterfaceHandler interfaceHandler = new InterfaceHandler();
     public PayDayHandler payDayHandler = new PayDayHandler();
     public ValueHandler valueHandler = new ValueHandler();
 
     public void initialize() {
         initializeDatabase();
         loadCommands();
-
+        loadEvents();
     }
 
 
     public void loadCommands() {
+        BankCommand bankCommand = new BankCommand(JavaPlugin.getPlugin(Core.class));
+        JavaPlugin.getPlugin(Core.class).getCommand("bank").setExecutor(bankCommand);
+
         MoneyCommand moneyCommand = new MoneyCommand(JavaPlugin.getPlugin(Core.class));
         JavaPlugin.getPlugin(Core.class).getCommand("money").setExecutor(moneyCommand);
 
@@ -40,6 +46,10 @@ public class Corebase {
 
     public BackendHandler getBackendHandler() {
         return backendHandler;
+    }
+
+    public InterfaceHandler getInterfaceHandler() {
+        return interfaceHandler;
     }
 
     public PayDayHandler getPayDayHandler() {

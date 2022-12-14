@@ -1,6 +1,7 @@
 package de.starvalcity.starvaleconomy.database;
 
 import de.starvalcity.base.api.def.database.MySQLAPI;
+import de.starvalcity.base.api.def.economy.Bank;
 import de.starvalcity.base.api.handling.object.ObjectSQLManager;
 import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
@@ -161,5 +162,14 @@ public class BackendHandler {
             sqlException.printStackTrace();
         }
         return balance;
+    }
+
+    public void createBank(Bank bank) {
+        if (!ObjectSQLManager.objectExists(bank)) {
+            return;
+        }
+        if (ObjectSQLManager.objectExists(bank)) {
+
+        }
     }
 }

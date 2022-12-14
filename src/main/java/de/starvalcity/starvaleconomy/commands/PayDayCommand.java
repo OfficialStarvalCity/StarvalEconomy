@@ -12,9 +12,9 @@ public class PayDayCommand implements CommandExecutor {
 
     private static Corebase corebase = new Corebase();
 
-        private Core plugin;
+    private Core plugin;
 
-        public PayDayCommand(Core plugin) {
+    public PayDayCommand(Core plugin) {
             this.plugin = plugin;
         }
 
@@ -23,16 +23,23 @@ public class PayDayCommand implements CommandExecutor {
             if (sender instanceof Player) {
                 Player player = (Player) sender;
 
+                // /payday
                 if (args.length == 0) {
-                    corebase.getPayDayHandler().startPayDay();
+
+
+                    // /payday stop
                 } else if (args[0].equals("stop")) {
                     corebase.getPayDayHandler().stopPayDay();
+
+                    // /payday setInterval <Intervall>
                 } else if (args[0].equals("setInterval")) {
                     try {
                         corebase.getPayDayHandler().setInterval(Integer.parseInt(args[1]));
                     } catch (NumberFormatException e) {
                         player.sendMessage("Bitte gib eine gültige Anzahl in Sekunden an!");
                     }
+
+                    // /payday resume
                 } else if (args[0].equals("resume")) {
                     corebase.getPayDayHandler().resumePayDay();
                 } else {
