@@ -2,6 +2,7 @@ package de.starvalcity.starvaleconomy.commands;
 
 import de.starvalcity.starvaleconomy.Core;
 import de.starvalcity.starvaleconomy.Corebase;
+import de.starvalcity.starvaleconomy.handling.InterfaceHandler;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -26,6 +27,7 @@ public class PayDayCommand implements CommandExecutor {
                 // /payday
                 if (args.length == 0) {
 
+                    InterfaceHandler.openAdminPayDayGUI(player);
 
                     // /payday stop
                 } else if (args[0].equals("stop")) {

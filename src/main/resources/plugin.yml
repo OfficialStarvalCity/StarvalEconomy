@@ -9,6 +9,8 @@ description: Economy Plugin for StarvalCity
 website: https://starvalcity.de/
 
 commands:
+  bank:
+    usage: /bank
   money:
     usage: /money
   payday:
