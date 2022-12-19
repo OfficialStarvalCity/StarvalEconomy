@@ -47,6 +47,7 @@ public class PayDayHandler {
             task.cancel();
             interval = newInterval;
             task = new BukkitRunnable() {
+
                 public void run() {
                     for (Player player : Bukkit.getOnlinePlayers()) {
                         corebase.getBackendHandler().addBalance(player, 200);
@@ -64,6 +65,7 @@ public class PayDayHandler {
         if (!running) {
             running = true;
             task = new BukkitRunnable() {
+
                 public void run() {
                     for (Player player : Bukkit.getOnlinePlayers()) {
                         corebase.getBackendHandler().addBalance(player, 200);

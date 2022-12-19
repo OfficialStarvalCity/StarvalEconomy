@@ -18,16 +18,16 @@ public class BackendHandler {
      */
     public void storeDefaultBalance(@NotNull Player player) {
         if (!ObjectSQLManager.objectExists(player)) {
-            System.err.println("[Datenbank - LiquidPlayers] Kontostand konnte nicht aktualisiert werden! Spieler konnte nicht in der Datenbank gefunden werden.");
+            System.err.println("[Spieler-Datenbank] Kontostand konnte nicht aktualisiert werden! Spieler konnte nicht in der Datenbank gefunden werden.");
         } else {
             int id = ObjectSQLManager.getObjectId(player);
-            ResultSet resultSet = MySQLAPI.query("SELECT `ReadyCash` FROM `LiquidPlayers` WHERE `ID` = \"" + id + "\";");
+            ResultSet resultSet = MySQLAPI.query("SELECT `Bargeld` FROM `Spieler` WHERE `ID` = \"" + id + "\";");
 
             try {
                 if(resultSet.next()) {
-                    MySQLAPI.update("UPDATE `LiquidPlayers` SET `ReadyCash`='" + 1000.00 + "' WHERE `ID`='" + id + "';");
+                    MySQLAPI.update("UPDATE `Spieler` SET `Bargeld`='" + 1000.00 + "' WHERE `ID`='" + id + "';");
                 } else {
-                    MySQLAPI.update("INSERT INTO `LiquidPlayers` (`UUID`, `Name`, `ReadyCash`) VALUES ('" +
+                    MySQLAPI.update("INSERT INTO `Spieler` (`UUID`, `Name`, `Bargeld`) VALUES ('" +
                             player.getUniqueId().toString() + "','" + player.getName() + "','" + 1000.00 + "');");
                 }
             } catch (SQLException sqlException) {
@@ -44,16 +44,16 @@ public class BackendHandler {
      */
     public void storeBalance(@NotNull Player player, double balance) {
         if (!ObjectSQLManager.objectExists(player)) {
-            System.err.println("[Datenbank - LiquidPlayers] Kontostand konnte nicht aktualisiert werden! Spieler konnte nicht in der Datenbank gefunden werden.");
+            System.err.println("[Spieler-Datenbank] Kontostand konnte nicht aktualisiert werden! Spieler konnte nicht in der Datenbank gefunden werden.");
         } else {
             int id = ObjectSQLManager.getObjectId(player);
-            ResultSet resultSet = MySQLAPI.query("SELECT `ReadyCash` FROM `LiquidPlayers` WHERE `ID` = \"" + id + "\";");
+            ResultSet resultSet = MySQLAPI.query("SELECT `Bargeld` FROM `Spieler` WHERE `ID` = \"" + id + "\";");
 
             try {
                 if (resultSet.next()) {
-                    MySQLAPI.update("UPDATE `LiquidPlayers` SET `ReadyCash`='" + balance + "' WHERE `ID`='" + id + "';");
+                    MySQLAPI.update("UPDATE `Spieler` SET `Bargeld`='" + balance + "' WHERE `ID`='" + id + "';");
                 } else {
-                    MySQLAPI.update("INSERT INTO `LiquidPlayers` (`UUID`, `Name`, `ReadyCash`) VALUES ('" +
+                    MySQLAPI.update("INSERT INTO `Spieler` (`UUID`, `Name`, `Bargeld`) VALUES ('" +
                             player.getUniqueId().toString() + "','" + player.getName() + "','" + balance + "');");
                 }
             } catch (SQLException sqlException) {
@@ -78,18 +78,18 @@ public class BackendHandler {
      */
     public void addBalance(@NotNull Player player, double amount) {
         if (!ObjectSQLManager.objectExists(player)) {
-            System.err.println("[Datenbank - LiquidPlayers] Kontostand konnte nicht aktualisiert werden! Spieler konnte nicht in der Datenbank gefunden werden.");
+            System.err.println("[Spieler-Datenbank] Kontostand konnte nicht aktualisiert werden! Spieler konnte nicht in der Datenbank gefunden werden.");
         } else {
             int id = ObjectSQLManager.getObjectId(player);
-            ResultSet resultSet = MySQLAPI.query("SELECT `ReadyCash` FROM `LiquidPlayers` WHERE `ID` = \"" + id + "\";");
+            ResultSet resultSet = MySQLAPI.query("SELECT `Bargeld` FROM `Spieler` WHERE `ID` = \"" + id + "\";");
 
             double newBalance = getPlayerBalance(player) + amount;
 
             try {
                 if (resultSet.next()) {
-                    MySQLAPI.update("UPDATE `LiquidPlayers` SET `ReadyCash`='" + newBalance + "' WHERE `ID`='" + id + "';");
+                    MySQLAPI.update("UPDATE `Spieler` SET `Bargeld`='" + newBalance + "' WHERE `ID`='" + id + "';");
                 } else {
-                    MySQLAPI.update("INSERT INTO `LiquidPlayers` (`UUID`, `Name`, `ReadyCash`) VALUES ('" +
+                    MySQLAPI.update("INSERT INTO `Spieler` (`UUID`, `Name`, `Bargeld`) VALUES ('" +
                             player.getUniqueId().toString() + "','" + player.getName() + "','" + newBalance + "');");
                 }
             } catch (SQLException sqlException) {
@@ -114,18 +114,18 @@ public class BackendHandler {
      */
     public void removeBalance(@NotNull Player player, double amount) {
         if (!ObjectSQLManager.objectExists(player)) {
-            System.err.println("[Datenbank - LiquidPlayers] Kontostand konnte nicht aktualisiert werden! Spieler konnte nicht in der Datenbank gefunden werden.");
+            System.err.println("[Spieler-Datenbank] Kontostand konnte nicht aktualisiert werden! Spieler konnte nicht in der Datenbank gefunden werden.");
         } else {
             int id = ObjectSQLManager.getObjectId(player);
-            ResultSet resultSet = MySQLAPI.query("SELECT `ReadyCash` FROM `LiquidPlayers` WHERE `ID` = \"" + id + "\";");
+            ResultSet resultSet = MySQLAPI.query("SELECT `Bargeld` FROM `Spieler` WHERE `ID` = \"" + id + "\";");
 
             double newBalance = getPlayerBalance(player) - amount;
 
             try {
                 if (resultSet.next()) {
-                    MySQLAPI.update("UPDATE `LiquidPlayers` SET `ReadyCash`='" + newBalance + "' WHERE `ID`='" + id + "';");
+                    MySQLAPI.update("UPDATE `Spieler` SET `Bargeld`='" + newBalance + "' WHERE `ID`='" + id + "';");
                 } else {
-                    MySQLAPI.update("INSERT INTO `LiquidPlayers` (`UUID`, `Name`, `ReadyCash`) VALUES ('" +
+                    MySQLAPI.update("INSERT INTO `Spieler` (`UUID`, `Name`, `Bargeld`) VALUES ('" +
                             player.getUniqueId().toString() + "','" + player.getName() + "','" + newBalance + "');");
                 }
             } catch (SQLException sqlException) {
@@ -153,10 +153,10 @@ public class BackendHandler {
 
         try {
             int id = ObjectSQLManager.getObjectId(player);
-            ResultSet resultSet = MySQLAPI.query("SELECT `ReadyCash` FROM `LiquidPlayers` WHERE `ID` = \"" + id + "\";");
+            ResultSet resultSet = MySQLAPI.query("SELECT `Bargeld` FROM `Spieler` WHERE `ID` = \"" + id + "\";");
 
             while (resultSet.next()) {
-                balance = resultSet.getDouble("ReadyCash");
+                balance = resultSet.getDouble("Bargeld");
             }
         } catch (SQLException sqlException) {
             sqlException.printStackTrace();
