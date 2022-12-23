@@ -9,6 +9,7 @@ import de.starvalcity.starvaleconomy.handling.InterfaceActionHandler;
 import de.starvalcity.starvaleconomy.handling.InterfaceHandler;
 import de.starvalcity.starvaleconomy.handling.PayDayHandler;
 import de.starvalcity.starvaleconomy.handling.ValueHandler;
+import de.starvalcity.starvaleconomy.listeners.FirstPayListener;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -45,6 +46,7 @@ public class Corebase {
 
     public void loadListeners() {
         Bukkit.getServer().getPluginManager().registerEvents(new InterfaceActionHandler(), JavaPlugin.getPlugin(Core.class));
+        Bukkit.getServer().getPluginManager().registerEvents(new FirstPayListener(), JavaPlugin.getPlugin(Core.class));
     }
 
     public void initializeDatabase() {
