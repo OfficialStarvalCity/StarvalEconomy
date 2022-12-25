@@ -149,7 +149,7 @@ public class BackendHandler {
      * @return Menge an Bargeld des angegebenen Spielers
      */
     public double getPlayerBalance(Player player) {
-        double balance = 1.00;
+        double balance = 0.00;
 
         try {
             int id = ObjectSQLManager.getObjectId(player);
