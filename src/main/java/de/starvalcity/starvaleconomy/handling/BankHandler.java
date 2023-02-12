@@ -13,6 +13,7 @@ public class BankHandler {
         }
         if (!ObjectSQLManager.objectExists(bank)) {
             ObjectSQLManager.attachObject(bank);
+
         }
     }
 
