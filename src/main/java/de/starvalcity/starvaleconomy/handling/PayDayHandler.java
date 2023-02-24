@@ -18,6 +18,10 @@ public class PayDayHandler {
 
     private BukkitRunnable task;
 
+    /**
+     * PayDay Start
+     * Startet den PayDay.
+     */
     public void startPayDay() {
         if (!running) {
             running = true;
@@ -35,6 +39,10 @@ public class PayDayHandler {
         }
     }
 
+    /**
+     * PayDay Stop
+     * Stoppt den PayDay.
+     */
     public void stopPayDay() {
         if (running) {
             running = false;
@@ -42,6 +50,11 @@ public class PayDayHandler {
         }
     }
 
+    /**
+     * Interval Setzen
+     * Setzt ein Interval auf eine bestimmte Anzahl von Sekunden.
+     * @param newInterval
+     */
     public void setInterval(int newInterval) {
         if (running) {
             task.cancel();
@@ -61,6 +74,10 @@ public class PayDayHandler {
         }
     }
 
+    /**
+     * PayDay Pausieren
+     * Pausiert den PayDay oder startet ihn.
+     */
     public void resumePayDay() {
         if (!running) {
             running = true;

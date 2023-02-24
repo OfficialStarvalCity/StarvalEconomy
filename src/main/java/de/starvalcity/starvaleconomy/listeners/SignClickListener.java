@@ -2,7 +2,6 @@ package de.starvalcity.starvaleconomy.listeners;
 
 import de.starvalcity.starvaleconomy.handling.ATMHandler;
 import net.kyori.adventure.text.Component;
-import net.kyori.adventure.text.event.ClickEvent;
 import net.kyori.adventure.text.format.TextColor;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
@@ -11,18 +10,18 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.player.PlayerInteractEvent;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.Arrays;
-import java.util.List;
 
 public class SignClickListener implements Listener {
 
-    static Component firstLine = Component.text().content("[SCB - Automat]").build();
+    static Component atmSignLine = Component.text().content("[SCB - Automat]").color(TextColor.color(0x227D00)).build();
 
     public static Material[] signMaterials = ATMHandler.atmMaterials;
 
     @EventHandler
-    public void onInteract(PlayerInteractEvent interactEvent) {
+    public void onInteract(@NotNull PlayerInteractEvent interactEvent) {
 
         if (interactEvent.getClickedBlock().getState() instanceof Sign) {
             if (interactEvent.getAction()
@@ -37,7 +36,7 @@ public class SignClickListener implements Listener {
 
                 Sign sign = (Sign) block.getState();
 
-                if (sign.line(0).equals(firstLine)) {
+                if (sign.line(0).equals(atmSignLine)) {
 
                     interactEvent.getPlayer().sendMessage("Hi!");
 

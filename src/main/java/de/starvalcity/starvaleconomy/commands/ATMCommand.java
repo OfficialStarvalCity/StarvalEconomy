@@ -2,7 +2,6 @@ package de.starvalcity.starvaleconomy.commands;
 
 import de.starvalcity.starvaleconomy.Core;
 import de.starvalcity.starvaleconomy.Corebase;
-import org.bukkit.Material;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -24,7 +23,13 @@ public class ATMCommand implements CommandExecutor {
 
         Player sender = (Player) commandSender;
 
-        corebase.getAtmHandler().createATM(sender);
+        if (strings.length == 0) {
+            corebase.getAtmHandler().createATM(sender);
+        }
+
+        if (strings.length == 2) {
+
+        }
 
         return false;
     }
